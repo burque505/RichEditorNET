@@ -820,8 +820,9 @@ namespace EllipticBit.RichEditorNET
 						font.Superscript = tomConstants.tomFalse;
 					}
 					else {
-						font.Superscript = tomConstants.tomTrue;
+						//Clear subscript first: RichEdit clears both offsets when either one is cleared.
 						font.Subscript = tomConstants.tomFalse;
+						font.Superscript = tomConstants.tomTrue;
 					}
 				}
 				finally {
@@ -847,8 +848,9 @@ namespace EllipticBit.RichEditorNET
 						font.Subscript = tomConstants.tomFalse;
 					}
 					else {
-						font.Subscript = tomConstants.tomTrue;
+						//Clear superscript first: RichEdit clears both offsets when either one is cleared.
 						font.Superscript = tomConstants.tomFalse;
+						font.Subscript = tomConstants.tomTrue;
 					}
 				}
 				finally {
@@ -963,6 +965,8 @@ namespace EllipticBit.RichEditorNET
 						}
 
 						para.ListType = listType;
+						//Number from 1, as HtmlFormatter does; RichEdit otherwise starts at 0.
+						para.ListStart = 1;
 					}
 				}
 				finally {
